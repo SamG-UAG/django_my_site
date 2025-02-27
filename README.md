@@ -57,3 +57,67 @@ urlpatterns = [
     path('', include("blog.urls")) # <-- new
 ]
 ```
+
+## 4.- Inside your app folder create another folder called templates and another   one for your html files
+
+In this case it will be:
+```bash
+my_site/blog/templates/blog
+```
+
+## 5.- Create another dir called templates for your base html
+
+In this case ot will be:
+```bash
+my_site/templates/
+```
+
+## 6.- Create your html base template
+
+```django
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock  %}</title>
+    {% block css_files %}{% endblock  %}
+</head>
+<body>
+    {% block body %}{% endblock  %}
+</body>
+</html>
+```
+
+## 7.- To make django aware of these templates and app set in my_site/my_site/settings.py
+
+```python
+
+INSTALLED_APPS = [
+    'blog',      #<--- new
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / "templates"    # <--- new
+        ],
+        'APP_DIRS': True, 
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
