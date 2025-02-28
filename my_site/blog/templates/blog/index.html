@@ -1,9 +1,56 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 My blog
 {% endblock title %}
 
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">
+{% endblock css_files %}
+
 {% block content %}
-<h1>Welcome to my blog</h1>
+<header id= "main-navigation">
+<h1><a href="">Samuel's Blog</a></h1>
+<nav>
+    <a href="">All Post</a>
+</nav>
+</header>
+
+<section id="welcome">
+    <header>
+        <img src="{% static "blog/images/tommy.jpeg" %}" alt="Sam - the aoutor of this blog">
+        <h2>SAMUEL'S BLOG</h2>
+    </header>
+    <p>Hi, I am Sam and I love coding</p>
+</section>
+
+<section id="latest-posts">
+    <h2>My Latest Post</h2>
+
+    <ul>
+        <li>
+            <article class="post">
+                <a href="">
+                    <img src="{% static "blog/images/montain.png" %}" alt="Mountain Hiking" />
+                    <div class="post__conten">
+                        <h3>Mountain Hiking</h3>
+                        <p>There's nothink like the views you get when hiking in the mountaings</p>
+                    </div>
+                </a>
+            </article>
+        </li>
+    </ul>
+</section>
+
+<section id="about">
+    <h2>What I Do</h2>
+    <p>
+        I love programming, I love to help others exploring new tecnologies.
+    </p>
+    <p>
+        My goal is to keep learning, and get new certifications 
+    </p>
+
+</section>
 {% endblock content %}

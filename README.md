@@ -121,3 +121,94 @@ TEMPLATES = [
     },
 ]
 ```
+## 8.- Create your HTML FILE index.html
+
+```django
+{% extends "base.html" %}
+
+{% block title %}
+My blog
+{% endblock title %}
+
+{% block content %}
+<header>
+<h1><a href="">Samuel's Blog</a></h1>
+<nav>
+    <a href="">All Post</a>
+</nav>
+</header>
+
+<section id="welcome">
+    <header>
+        <img src="" alt="Sam - the aoutor of this blog">
+        <h2>SAMUEL'S BLOG</h2>
+    </header>
+    <p>Hi, I am Sam and I love coding</p>
+</section>
+{% endblock content %}
+```
+
+## 9.- Creation of the static files 
+
+Create this path for your base css file
+
+```bash
+my_site/templates/app.css
+```
+
+And other one for you app:
+```bash
+my_site/blog/static/blog/index.css
+```
+
+## 10.- To make django aware of these static files and app set in my_site/my_site/settings.py
+
+```python
+
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [    # <-- new
+    BASE_DIR / "static" # <-- new
+]                       # <-- new
+```
+
+## 11.- For load your css files in the html add: 
+
+```django
+{% extends "base.html" %} 
+{% load static %}   # <-- new
+
+{% block title %}
+My blog
+{% endblock title %}
+
+{% block css_files %}   # <-- new
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">    # <-- new
+{% endblock css_files %}    # <-- new
+
+{% block content %}
+<header>
+<h1><a href="">Samuel's Blog</a></h1>
+<nav>
+    <a href="">All Post</a>
+</nav>
+</header>
+
+<section id="welcome">
+    <header>
+        <img src="" alt="Sam - the aoutor of this blog">
+        <h2>SAMUEL'S BLOG</h2>
+    </header>
+    <p>Hi, I am Sam and I love coding</p>
+</section>
+{% endblock content %}
+```
+
+## 12.- Create a Folder for the images in:
+```bash
+my_site/blog/static/blog/images/
+```
+## 13c.- Add the images like in this example: 
+```django
+<img src="{% static "blog/images/montain.png" %}" alt="Mountain Hiking" />
+```
